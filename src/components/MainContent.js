@@ -1,10 +1,24 @@
+import { useState } from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import Countries from "./Countries";
 
-const MainContent = () => {
+const MainContent = ({ selected, setSelected }) => {
+  const [isActive, setIsActive] = useState(false);
+
+  const selectOption = (e) => {
+    setSelected(e.target.textContent);
+  };
+
   return (
-    <StyledMain>
+    <StyledMain
+      onClick={(e) => {
+        if (!e.target.classList.contains("placeholder")) {
+          setIsActive(false);
+        }
+      }}
+    >
       <form className="searh-form">
         <div className="search-container">
           <FontAwesomeIcon icon={faSearch} />
@@ -12,19 +26,34 @@ const MainContent = () => {
         </div>
 
         <div className="custom-select-menu">
-          <div className="placeholder">
-            Filter by Region <FontAwesomeIcon icon={faChevronDown} />
+          <div className="placeholder" onClick={() => setIsActive(!isActive)}>
+            {!selected ? "Filter by Region" : selected}{" "}
+            <FontAwesomeIcon icon={faChevronDown} />
           </div>
 
-          <div className="options">
-            <div className="option">Africa</div>
-            <div className="option">America</div>
-            <div className="option">Asia</div>
-            <div className="option">Europe</div>
-            <div className="option">Oceania</div>
-          </div>
+          {isActive && (
+            <div className="options">
+              <div className="option" onClick={selectOption}>
+                Africa
+              </div>
+              <div className="option" onClick={selectOption}>
+                America
+              </div>
+              <div className="option" onClick={selectOption}>
+                Asia
+              </div>
+              <div className="option" onClick={selectOption}>
+                Europe
+              </div>
+              <div className="option" onClick={selectOption}>
+                Oceania
+              </div>
+            </div>
+          )}
         </div>
       </form>
+
+      <Countries />
     </StyledMain>
   );
 };
@@ -58,8 +87,8 @@ const StyledMain = styled.main`
     }
 
     .custom-select-menu {
-      padding: 1rem;
-      width: 15%;
+      /* padding: 1rem; */
+      width: 25%;
       border-radius: 5px;
       position: relative;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
@@ -71,7 +100,7 @@ const StyledMain = styled.main`
         font-size: 14px;
         font-weight: 600;
         cursor: pointer;
-        padding-left: 0.6rem;
+        padding: 1rem 1rem 1rem 1.6rem;
       }
 
       .options {
@@ -88,6 +117,20 @@ const StyledMain = styled.main`
           cursor: pointer;
           font-size: 14px;
           font-weight: 600;
+
+          &:first-child {
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+          }
+
+          &:last-child {
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+          }
+          &:hover {
+            background: hsl(0, 0%, 52%);
+            color: white;
+          }
         }
       }
     }
