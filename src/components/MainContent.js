@@ -37,7 +37,14 @@ const MainContent = ({ selected, setSelected }) => {
         <div className="custom-select-menu">
           <div className="placeholder" onClick={() => setIsActive(!isActive)}>
             {!selected ? "Filter by Region" : selected}{" "}
-            <FontAwesomeIcon icon={faChevronDown} />
+            <FontAwesomeIcon
+              icon={faChevronDown}
+              className="chevron-down"
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsActive(!isActive);
+              }}
+            />
           </div>
 
           {isActive && (
