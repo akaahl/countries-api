@@ -1,9 +1,7 @@
 import styled from "styled-components";
 import { useEffect } from "react";
 
-const Countries = ({ countries, setCountries }) => {
-  const apiUrl = "https://restcountries.eu/rest/v2/all";
-
+const Countries = ({ countries, setCountries, apiUrl, setApiUrl }) => {
   useEffect(() => {
     const abortCont = new AbortController();
 
@@ -19,7 +17,7 @@ const Countries = ({ countries, setCountries }) => {
       });
 
     return () => abortCont.abort();
-  }, []);
+  }, [apiUrl, setCountries]);
 
   return (
     <StyledContainer>

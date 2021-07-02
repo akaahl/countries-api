@@ -7,14 +7,17 @@ import Countries from "./Countries";
 const MainContent = ({ selected, setSelected }) => {
   const [isActive, setIsActive] = useState(false);
   const [countries, setCountries] = useState(null);
+  const [apiUrl, setApiUrl] = useState("https://restcountries.eu/rest/v2/all");
 
   const selectOption = (e) => {
     const region = e.target.textContent;
     setSelected(region);
 
-    fetch(`https://restcountries.eu/rest/v2/region/${region}`)
-      .then((res) => res.json())
-      .then((data) => setCountries(data));
+    setApiUrl(`https://restcountries.eu/rest/v2/region/${region}`);
+
+    // fetch(apiUrl)
+    //   .then((res) => res.json())
+    //   .then((data) => setCountries(data));
   };
 
   return (
@@ -59,7 +62,12 @@ const MainContent = ({ selected, setSelected }) => {
         </div>
       </form>
 
-      <Countries countries={countries} setCountries={setCountries} />
+      <Countries
+        countries={countries}
+        setCountries={setCountries}
+        apiUrl={apiUrl}
+        setApiUrl={setApiUrl}
+      />
     </StyledMain>
   );
 };
