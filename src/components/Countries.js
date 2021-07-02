@@ -40,7 +40,7 @@ const StyledContainer = styled.div`
   width: 100%;
   margin-top: 4rem;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-gap: 4rem 4rem;
 
   section {
@@ -49,6 +49,10 @@ const StyledContainer = styled.div`
     .img-container {
       width: 100%;
       height: 50%;
+      background-size: 100% 100%;
+      background-position: center;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
 
       img {
         width: 100%;
