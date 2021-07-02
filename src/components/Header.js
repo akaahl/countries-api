@@ -26,6 +26,7 @@ const StyledHeader = styled.header`
   padding: 1rem 5rem;
   background: hsl(0, 0%, 98%);
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+  z-index: 10;
 
   h1 {
     font-size: 1.5rem;

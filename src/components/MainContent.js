@@ -6,9 +6,15 @@ import Countries from "./Countries";
 
 const MainContent = ({ selected, setSelected }) => {
   const [isActive, setIsActive] = useState(false);
+  const [countries, setCountries] = useState(null);
 
   const selectOption = (e) => {
-    setSelected(e.target.textContent);
+    const region = e.target.textContent;
+    setSelected(region);
+
+    fetch(`https://restcountries.eu/rest/v2/region/${region}`)
+      .then((res) => res.json())
+      .then((data) => setCountries(data));
   };
 
   return (
@@ -53,7 +59,7 @@ const MainContent = ({ selected, setSelected }) => {
         </div>
       </form>
 
-      <Countries />
+      <Countries countries={countries} setCountries={setCountries} />
     </StyledMain>
   );
 };
@@ -111,12 +117,15 @@ const StyledMain = styled.main`
         /* padding: 0.5rem 0; */
         box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
         border-radius: 5px;
+        z-index: 10;
+        background: white;
 
         .option {
           padding: 0.6rem 1.5rem;
           cursor: pointer;
           font-size: 14px;
           font-weight: 600;
+          z-index: 10;
 
           &:first-child {
             border-top-left-radius: 5px;
