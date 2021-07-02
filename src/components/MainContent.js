@@ -43,7 +43,7 @@ const MainContent = ({ selected, setSelected }) => {
                 Africa
               </div>
               <div className="option" onClick={selectOption}>
-                America
+                Americas
               </div>
               <div className="option" onClick={selectOption}>
                 Asia

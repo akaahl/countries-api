@@ -5,10 +5,21 @@ const Countries = ({ countries, setCountries }) => {
   const apiUrl = "https://restcountries.eu/rest/v2/all";
 
   useEffect(() => {
-    fetch(apiUrl)
+    const abortCont = new AbortController();
+
+    fetch(apiUrl, { signal: abortCont.signal })
       .then((res) => res.json())
-      .then((data) => setCountries(data));
-  });
+      .then((data) => setCountries(data))
+      .catch((err) => {
+        if (err.name === "AbortError") {
+          console.log("fetch aborted");
+        }
+
+        console.log(err.message);
+      });
+
+    return () => abortCont.abort();
+  }, []);
 
   return (
     <StyledContainer>
@@ -49,10 +60,6 @@ const StyledContainer = styled.div`
     .img-container {
       width: 100%;
       height: 50%;
-      background-size: 100% 100%;
-      background-position: center;
-      background-size: 100% 100%;
-      background-repeat: no-repeat;
 
       img {
         width: 100%;
