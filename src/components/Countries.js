@@ -1,19 +1,29 @@
 import styled from "styled-components";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
-const Countries = ({ countries, setCountries, apiUrl, setApiUrl }) => {
+const Countries = ({ countries, setCountries, apiUrl }) => {
+  const [error, setError] = useState(null);
+
   useEffect(() => {
     const abortCont = new AbortController();
 
     fetch(apiUrl, { signal: abortCont.signal })
-      .then((res) => res.json())
-      .then((data) => setCountries(data))
+      .then((res) => {
+        if (!res.ok) {
+          throw Error("The country that your for searched for does not exist");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        setCountries(data);
+        setError(null);
+      })
       .catch((err) => {
         if (err.name === "AbortError") {
           console.log("fetch aborted");
         }
 
-        console.log(err.message);
+        setError("The country that you searched for does not exist");
       });
 
     return () => abortCont.abort();
@@ -21,26 +31,28 @@ const Countries = ({ countries, setCountries, apiUrl, setApiUrl }) => {
 
   return (
     <StyledContainer>
-      {countries &&
-        countries.map((country, id) => (
-          <section key={id}>
-            <div className="img-container">
-              <img src={country.flag} alt="flag" />
-            </div>
-            <div className="details">
-              <h4>{country.name}</h4>
-              <p>
-                Population: <span>{country.population.toLocaleString()}</span>
-              </p>
-              <p>
-                Region: <span>{country.region}</span>
-              </p>
-              <p>
-                Capital: <span>{country.capital}</span>
-              </p>
-            </div>
-          </section>
-        ))}
+      {error && <h2>{error}</h2>}
+      {countries && !error
+        ? countries.map((country, id) => (
+            <section key={id}>
+              <div className="img-container">
+                <img src={country.flag} alt="flag" />
+              </div>
+              <div className="details">
+                <h4>{country.name}</h4>
+                <p>
+                  Population: <span>{country.population.toLocaleString()}</span>
+                </p>
+                <p>
+                  Region: <span>{country.region}</span>
+                </p>
+                <p>
+                  Capital: <span>{country.capital}</span>
+                </p>
+              </div>
+            </section>
+          ))
+        : ""}
     </StyledContainer>
   );
 };
@@ -62,7 +74,7 @@ const StyledContainer = styled.div`
       img {
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: contain;
       }
     }
 

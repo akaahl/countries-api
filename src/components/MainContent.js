@@ -12,9 +12,13 @@ const MainContent = ({ selected, setSelected }) => {
 
   const selectOption = (e) => {
     const region = e.target.textContent;
-    setSelected(region);
 
-    setApiUrl(`https://restcountries.eu/rest/v2/region/${region}`);
+    if (region === "All") {
+      setApiUrl("https://restcountries.eu/rest/v2/all");
+    } else {
+      setSelected(region);
+      setApiUrl(`https://restcountries.eu/rest/v2/region/${region}`);
+    }
   };
 
   const handleForm = (e) => {
@@ -56,6 +60,9 @@ const MainContent = ({ selected, setSelected }) => {
           {isActive && (
             <div className="options">
               <div className="option" onClick={selectOption}>
+                All
+              </div>
+              <div className="option" onClick={selectOption}>
                 Africa
               </div>
               <div className="option" onClick={selectOption}>
@@ -79,7 +86,6 @@ const MainContent = ({ selected, setSelected }) => {
         countries={countries}
         setCountries={setCountries}
         apiUrl={apiUrl}
-        setApiUrl={setApiUrl}
       />
     </StyledMain>
   );
@@ -112,13 +118,12 @@ const StyledMain = styled.main`
         border: none;
 
         &:focus {
-          outline: 2px dashed cyan;
+          outline: 2px dashed darkblue;
         }
       }
     }
 
     .custom-select-menu {
-      /* padding: 1rem; */
       width: 25%;
       border-radius: 5px;
       position: relative;
@@ -139,7 +144,6 @@ const StyledMain = styled.main`
         top: 3.5rem;
         left: 0;
         width: 100%;
-        /* padding: 0.5rem 0; */
         box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
         border-radius: 5px;
         z-index: 10;
