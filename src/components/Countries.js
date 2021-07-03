@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 
 const Countries = ({ countries, setCountries, apiUrl }) => {
   const [error, setError] = useState(null);
+  const [countryDetail, setCountryDetail] = useState(null);
 
   useEffect(() => {
     const abortCont = new AbortController();
@@ -29,12 +30,18 @@ const Countries = ({ countries, setCountries, apiUrl }) => {
     return () => abortCont.abort();
   }, [apiUrl, setCountries]);
 
+  const getCountryDetail = (name) => {
+    fetch(`https://restcountries.eu/rest/v2/name/${name}?fullText=true`)
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  };
+
   return (
     <StyledContainer>
       {error && <h2>{error}</h2>}
       {countries && !error
         ? countries.map((country, id) => (
-            <section key={id}>
+            <section key={id} onClick={() => getCountryDetail(country.name)}>
               <div className="img-container">
                 <img src={country.flag} alt="flag" />
               </div>
@@ -66,6 +73,7 @@ const StyledContainer = styled.div`
 
   section {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
 
     .img-container {
       width: 100%;
