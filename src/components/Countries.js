@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
+import Country from "./Country";
 
 const Countries = ({ countries, setCountries, apiUrl }) => {
   const [error, setError] = useState(null);
@@ -33,7 +34,10 @@ const Countries = ({ countries, setCountries, apiUrl }) => {
   const getCountryDetail = (name) => {
     fetch(`https://restcountries.eu/rest/v2/name/${name}?fullText=true`)
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        console.log(data[0]);
+        setCountryDetail(data[0]);
+      });
   };
 
   return (
@@ -60,6 +64,8 @@ const Countries = ({ countries, setCountries, apiUrl }) => {
             </section>
           ))
         : ""}
+
+      {countryDetail && <Country countryDetail={countryDetail} />}
     </StyledContainer>
   );
 };
