@@ -65,7 +65,12 @@ const Countries = ({ countries, setCountries, apiUrl }) => {
           ))
         : ""}
 
-      {countryDetail && <Country countryDetail={countryDetail} />}
+      {countryDetail && (
+        <Country
+          countryDetail={countryDetail}
+          setCountryDetail={setCountryDetail}
+        />
+      )}
     </StyledContainer>
   );
 };
