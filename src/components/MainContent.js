@@ -8,16 +8,18 @@ const MainContent = ({ selected, setSelected }) => {
   const [isActive, setIsActive] = useState(false);
   const [countries, setCountries] = useState(null);
   const [apiUrl, setApiUrl] = useState("https://restcountries.eu/rest/v2/all");
+  const [search, setSearch] = useState("");
 
   const selectOption = (e) => {
     const region = e.target.textContent;
     setSelected(region);
 
     setApiUrl(`https://restcountries.eu/rest/v2/region/${region}`);
+  };
 
-    // fetch(apiUrl)
-    //   .then((res) => res.json())
-    //   .then((data) => setCountries(data));
+  const handleForm = (e) => {
+    e.preventDefault();
+    setApiUrl(`https://restcountries.eu/rest/v2/name/${search}`);
   };
 
   return (
@@ -28,10 +30,14 @@ const MainContent = ({ selected, setSelected }) => {
         }
       }}
     >
-      <form className="searh-form">
+      <form className="searh-form" onSubmit={handleForm}>
         <div className="search-container">
           <FontAwesomeIcon icon={faSearch} />
-          <input type="search" placeholder="Search for a country" />
+          <input
+            type="search"
+            placeholder="Search for a country"
+            onChange={(e) => setSearch(e.target.value)}
+          />
         </div>
 
         <div className="custom-select-menu">
@@ -104,6 +110,10 @@ const StyledMain = styled.main`
         padding: 0.4rem;
         margin-left: 1rem;
         border: none;
+
+        &:focus {
+          outline: 2px dashed cyan;
+        }
       }
     }
 
