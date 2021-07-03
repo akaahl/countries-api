@@ -7,6 +7,12 @@ const GlobalStyles = createGlobalStyle`
         box-sizing: border-box;
     }
 
+    html {
+        @media (max-width: 425px) {
+            font-size: 80%;
+        }
+    }
+
     body {
         font-family: 'Nunito Sans', sans-serif;
     }

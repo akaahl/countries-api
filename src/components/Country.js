@@ -73,6 +73,7 @@ const StyledArticle = styled.article`
   position: absolute;
   top: 0;
   left: 0;
+  right: 0;
   width: 100%;
   height: 100vh;
   background: rgba(0, 0, 0, 0.3);
@@ -83,7 +84,7 @@ const StyledArticle = styled.article`
 
   .content {
     background: white;
-    padding: 2rem;
+    padding: 1rem;
     display: flex;
     width: 80%;
     height: 60%;
@@ -92,12 +93,10 @@ const StyledArticle = styled.article`
     .img-container {
       height: 100%;
       width: 40%;
-      background-size: 100% 100%;
 
       img {
         height: 100%;
         width: 100%;
-        object-fit: cover;
       }
     }
 
@@ -133,8 +132,84 @@ const StyledArticle = styled.article`
       }
 
       .bordering-countries {
-        margin-top: 3rem;
+        margin-top: 2rem;
       }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .content {
+      flex-direction: column;
+      height: 80%;
+
+      .img-container {
+        width: 100%;
+        height: 40%;
+      }
+
+      .details {
+        margin-left: 0;
+        width: 100%;
+
+        /* p {
+          display: flex;
+          justify-content: space-between;
+        }
+
+        h3 {
+          margin-top: 1rem;
+          text-align: center;
+        } */
+
+        .detail-container {
+          margin-top: 1rem;
+          flex-direction: column;
+          /* align-items: center; */
+          justify-content: center;
+
+          .detail-2 {
+            margin-left: 0;
+          }
+        }
+
+        .bordering-countries {
+          margin-top: 1rem;
+          /* display: block; */
+          /* margin: 1rem auto 0 auto; */
+        }
+      }
+    }
+  }
+
+  @media (min-height: 600px) {
+    .content {
+      height: 70%;
+    }
+  }
+
+  @media (min-height: 700px) {
+    .content {
+      height: 65%;
+    }
+  }
+
+  @media (min-height: 800px) {
+    .content {
+      height: 55%;
+    }
+  }
+
+  @media (min-height: 1024px) {
+    .content {
+      height: 50%;
+      width: 50%;
+    }
+  }
+
+  @media (min-height: 1366px) {
+    .content {
+      height: 30%;
+      width: 80%;
     }
   }
 `;
