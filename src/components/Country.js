@@ -51,14 +51,14 @@ const Country = ({ countryDetail, setCountryDetail }) => {
             <p>
               Languages: <span>{formatArray(countryDetail.languages)}</span>
             </p>
-          </div>
 
-          <p className="bordering-countries">
-            Border Countries:{" "}
-            {countryDetail.borders.map((country, index) => (
-              <span key={index}>{country + " "}</span>
-            ))}
-          </p>
+            <p className="bordering-countries">
+              Border Countries:{" "}
+              {countryDetail.borders.map((country, index) => (
+                <span key={index}>{country + " "}</span>
+              ))}
+            </p>
+          </div>
         </div>
       </div>
     </StyledArticle>
@@ -70,6 +70,7 @@ const StyledArticle = styled.article`
   top: 0;
   left: 0;
   right: 0;
+  bottom: 0;
   width: 100%;
   height: 100vh;
   background: rgba(0, 0, 0, 0.3);
@@ -77,7 +78,7 @@ const StyledArticle = styled.article`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem 0;
+  /* padding: 2rem 0; */
   overflow-y: scroll;
 
   .content {
@@ -85,22 +86,22 @@ const StyledArticle = styled.article`
     padding: 1rem;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    width: 30%;
-    min-height: 60%;
+    align-items: center;
+    width: 400px;
+    height: 450px;
     border-radius: 10px;
 
     .img-container {
-      height: 40%;
+      height: 35%;
 
       img {
         height: 100%;
         width: 100%;
+        object-fit: cover;
       }
     }
 
     .details {
-      /* margin-left: 4rem; */
       width: 100%;
       display: flex;
       flex-direction: column;
@@ -130,14 +131,18 @@ const StyledArticle = styled.article`
       }
 
       .bordering-countries {
-        margin: 1rem 0;
+        margin-top: 1rem;
+
+        span {
+          font-size: 12px;
+        }
       }
     }
   }
 
   @media (max-width: 768px) {
     .content {
-      width: 55%;
+      width: 380px;
     }
   }
 
