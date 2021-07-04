@@ -38,6 +38,8 @@ const Countries = ({ countries, setCountries, apiUrl }) => {
         console.log(data[0]);
         setCountryDetail(data[0]);
       });
+
+    document.body.style.overflow = "hidden";
   };
 
   return (

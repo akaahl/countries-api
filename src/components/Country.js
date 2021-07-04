@@ -13,6 +13,7 @@ const Country = ({ countryDetail, setCountryDetail }) => {
     <StyledArticle
       onClick={() => {
         setCountryDetail(null);
+        document.body.style.overflow = "auto";
       }}
     >
       <div className="content" onClick={(e) => e.stopPropagation()}>
@@ -70,7 +71,7 @@ const Country = ({ countryDetail, setCountryDetail }) => {
 };
 
 const StyledArticle = styled.article`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -86,8 +87,7 @@ const StyledArticle = styled.article`
     background: white;
     padding: 1rem;
     display: flex;
-    width: 80%;
-    height: 60%;
+    width: 60%;
     border-radius: 10px;
 
     .img-container {
@@ -105,6 +105,8 @@ const StyledArticle = styled.article`
       width: 60%;
       display: flex;
       flex-direction: column;
+      /* align-items: center;
+      justify-content: center; */
 
       h3 {
         margin-top: 2rem;
@@ -151,20 +153,9 @@ const StyledArticle = styled.article`
         margin-left: 0;
         width: 100%;
 
-        /* p {
-          display: flex;
-          justify-content: space-between;
-        }
-
-        h3 {
-          margin-top: 1rem;
-          text-align: center;
-        } */
-
         .detail-container {
           margin-top: 1rem;
           flex-direction: column;
-          /* align-items: center; */
           justify-content: center;
 
           .detail-2 {
@@ -174,8 +165,6 @@ const StyledArticle = styled.article`
 
         .bordering-countries {
           margin-top: 1rem;
-          /* display: block; */
-          /* margin: 1rem auto 0 auto; */
         }
       }
     }
