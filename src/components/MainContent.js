@@ -36,7 +36,7 @@ const MainContent = ({ selected, setSelected }) => {
     >
       <form className="searh-form" onSubmit={handleForm}>
         <div className="search-container">
-          <FontAwesomeIcon icon={faSearch} />
+          <FontAwesomeIcon icon={faSearch} className="search-icon" />
           <input
             type="search"
             placeholder="Search for a country"
@@ -111,15 +111,28 @@ const StyledMain = styled.main`
       border-radius: 5px;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
       background: ${(props) => props.theme.searchBg};
+      transition: background 0.3s ease-in;
+
+      .search-icon {
+        color: ${(props) => props.theme.searchIcon};
+        transition: color 0.3s ease-in;
+      }
 
       input[type="search"] {
         width: 100%;
         padding: 0.4rem;
         margin-left: 1rem;
         border: none;
+        background: ${(props) => props.theme.inputBg};
+        transition: background 0.3s ease-in;
+
+        &::placeholder {
+          color: ${(props) => props.theme.inputPlaceholder};
+          transition: color 0.3s ease-in;
+        }
 
         &:focus {
-          outline: 2px dashed darkblue;
+          outline: ${(props) => props.theme.inputOutline};
         }
       }
     }

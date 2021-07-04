@@ -14,7 +14,7 @@ const Header = ({ themeColor, setThemeColor }) => {
           <FontAwesomeIcon
             icon={faMoonSolid}
             className="moon-solid"
-            style={{ color: "#fff" }}
+            style={{ color: "hsl(0, 0%, 85%)" }}
           />
         )}
         <button onClick={() => setThemeColor(!themeColor)}>
