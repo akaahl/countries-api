@@ -93,9 +93,9 @@ const MainContent = ({ selected, setSelected }) => {
 
 const StyledMain = styled.main`
   width: 100%;
-  padding: 3rem 4rem;
-  margin-top: 4rem;
-  background: hsl(0, 0%, 98%);
+  padding: 7rem 4rem 3rem 4rem;
+  background: ${(props) => props.theme.mainContentBg};
+  transition: background 0.3s ease-in;
 
   form {
     width: 100%;
@@ -110,6 +110,7 @@ const StyledMain = styled.main`
       align-items: center;
       border-radius: 5px;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      background: ${(props) => props.theme.searchBg};
 
       input[type="search"] {
         width: 100%;

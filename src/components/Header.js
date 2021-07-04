@@ -10,7 +10,13 @@ const Header = ({ themeColor, setThemeColor }) => {
 
       <div className="theme-switcher">
         {!themeColor && <FontAwesomeIcon icon={faMoon} />}
-        {themeColor && <FontAwesomeIcon icon={faMoonSolid} />}
+        {themeColor && (
+          <FontAwesomeIcon
+            icon={faMoonSolid}
+            className="moon-solid"
+            style={{ color: "#fff" }}
+          />
+        )}
         <button onClick={() => setThemeColor(!themeColor)}>
           {themeColor === false ? "Dark Mode" : "Light Mode"}
         </button>
@@ -26,18 +32,26 @@ const StyledHeader = styled.header`
   justify-content: space-between;
   padding: 1rem 5rem;
   background: ${(props) => props.theme.background};
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: ${(props) => props.theme.headerBoxShadow};
   z-index: 10;
+  transition: background 0.3s ease-in;
 
   h1 {
     font-size: 1.5rem;
     font-weight: 700;
     color: ${(props) => props.theme.headerH1};
+    transition: color 0.3s ease-in;
   }
 
   .theme-switcher {
     display: flex;
     align-items: center;
+
+    .moon-switcher {
+      path {
+        fill: white;
+      }
+    }
 
     button {
       margin-left: 1rem;
@@ -45,6 +59,7 @@ const StyledHeader = styled.header`
       border: none;
       font-weight: 700;
       cursor: pointer;
+      color: ${(props) => props.theme.headerButton};
     }
   }
 `;
