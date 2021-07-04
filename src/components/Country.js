@@ -25,37 +25,32 @@ const Country = ({ countryDetail, setCountryDetail }) => {
           <h3>{countryDetail.name}</h3>
 
           <div className="detail-container">
-            <div className="detail-1">
-              <p>
-                Native Name: <span>{countryDetail.nativeName}</span>
-              </p>
-              <p>
-                Population:{" "}
-                <span>{countryDetail.population.toLocaleString()}</span>
-              </p>
-              <p>
-                Region: <span>{countryDetail.region}</span>
-              </p>
-              <p>
-                Sub Region: <span>{countryDetail.subregion}</span>
-              </p>
-              <p>
-                Capital: <span>{countryDetail.capital}</span>
-              </p>
-            </div>
+            <p>
+              Native Name: <span>{countryDetail.nativeName}</span>
+            </p>
+            <p>
+              Population:{" "}
+              <span>{countryDetail.population.toLocaleString()}</span>
+            </p>
+            <p>
+              Region: <span>{countryDetail.region}</span>
+            </p>
+            <p>
+              Sub Region: <span>{countryDetail.subregion}</span>
+            </p>
+            <p>
+              Capital: <span>{countryDetail.capital}</span>
+            </p>
+            <p>
+              Top Level Domain: <span>{countryDetail.topLevelDomain[0]}</span>
+            </p>
+            <p>
+              Currencies: <span>{formatArray(countryDetail.currencies)}</span>
+            </p>
 
-            <div className="detail-2">
-              <p>
-                Top Level Domain: <span>{countryDetail.topLevelDomain[0]}</span>
-              </p>
-              <p>
-                Currencies: <span>{formatArray(countryDetail.currencies)}</span>
-              </p>
-
-              <p>
-                Languages: <span>{formatArray(countryDetail.languages)}</span>
-              </p>
-            </div>
+            <p>
+              Languages: <span>{formatArray(countryDetail.languages)}</span>
+            </p>
           </div>
 
           <p className="bordering-countries">
@@ -82,17 +77,21 @@ const StyledArticle = styled.article`
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 2rem 0;
+  overflow-y: scroll;
 
   .content {
     background: white;
     padding: 1rem;
     display: flex;
-    width: 60%;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 30%;
+    min-height: 60%;
     border-radius: 10px;
 
     .img-container {
-      height: 100%;
-      width: 40%;
+      height: 40%;
 
       img {
         height: 100%;
@@ -101,15 +100,15 @@ const StyledArticle = styled.article`
     }
 
     .details {
-      margin-left: 4rem;
-      width: 60%;
+      /* margin-left: 4rem; */
+      width: 100%;
       display: flex;
       flex-direction: column;
-      /* align-items: center;
-      justify-content: center; */
+      align-items: center;
+      justify-content: center;
 
       h3 {
-        margin-top: 2rem;
+        margin-top: 1rem;
 
         font-weight: 700;
       }
@@ -125,79 +124,25 @@ const StyledArticle = styled.article`
       }
 
       .detail-container {
-        margin-top: 2rem;
+        margin-top: 1rem;
         display: flex;
-
-        .detail-2 {
-          margin-left: 4rem;
-        }
+        flex-direction: column;
       }
 
       .bordering-countries {
-        margin-top: 2rem;
+        margin: 1rem 0;
       }
     }
   }
 
   @media (max-width: 768px) {
     .content {
-      flex-direction: column;
-      height: 80%;
-
-      .img-container {
-        width: 100%;
-        height: 40%;
-      }
-
-      .details {
-        margin-left: 0;
-        width: 100%;
-
-        .detail-container {
-          margin-top: 1rem;
-          flex-direction: column;
-          justify-content: center;
-
-          .detail-2 {
-            margin-left: 0;
-          }
-        }
-
-        .bordering-countries {
-          margin-top: 1rem;
-        }
-      }
+      width: 55%;
     }
   }
 
-  @media (min-height: 600px) {
+  @media (max-width: 425px) {
     .content {
-      height: 70%;
-    }
-  }
-
-  @media (min-height: 700px) {
-    .content {
-      height: 65%;
-    }
-  }
-
-  @media (min-height: 800px) {
-    .content {
-      height: 55%;
-    }
-  }
-
-  @media (min-height: 1024px) {
-    .content {
-      height: 50%;
-      width: 50%;
-    }
-  }
-
-  @media (min-height: 1366px) {
-    .content {
-      height: 30%;
       width: 80%;
     }
   }
