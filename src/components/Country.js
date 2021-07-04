@@ -105,13 +105,13 @@ const StyledArticle = styled.article`
       width: 100%;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      /* align-items: center; */
       justify-content: center;
 
       h3 {
-        margin-top: 1rem;
+        margin: 1rem auto 0 auto;
 
-        font-weight: 700;
+        font-weight: 800;
       }
 
       p {

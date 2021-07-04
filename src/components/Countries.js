@@ -86,16 +86,20 @@ const StyledContainer = styled.div`
 
   section {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    border-radius: 7px;
     cursor: pointer;
 
     .img-container {
+      border-top-left-radius: 7px;
+      border-top-right-radius: 7px;
+      overflow: hidden;
       width: 100%;
       height: 50%;
 
       img {
         width: 100%;
         height: 100%;
-        object-fit: contain;
+        object-fit: cover;
       }
     }
 
