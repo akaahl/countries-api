@@ -1,6 +1,12 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
-const Country = ({ countryDetail, setCountryDetail }) => {
+const Country = ({
+  countryDetail,
+  setCountryDetail,
+  animateId,
+  setAnimateId,
+}) => {
   const formatArray = (arr) => {
     if (arr.length > 1) {
       return arr.map((item) => item.name).join(", ");
@@ -13,6 +19,7 @@ const Country = ({ countryDetail, setCountryDetail }) => {
     <StyledArticle
       onClick={() => {
         setCountryDetail(null);
+        setAnimateId("");
         document.body.style.overflow = "auto";
       }}
     >

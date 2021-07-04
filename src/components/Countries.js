@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
+import { motion, AnimatePresence, AnimateSharedLayout } from "framer-motion";
 import Country from "./Country";
 
 const Countries = ({ countries, setCountries, apiUrl }) => {
   const [error, setError] = useState(null);
   const [countryDetail, setCountryDetail] = useState(null);
+  const [animateId, setAnimateId] = useState("");
 
   useEffect(() => {
     const abortCont = new AbortController();
@@ -37,6 +39,7 @@ const Countries = ({ countries, setCountries, apiUrl }) => {
       .then((data) => {
         console.log(data[0]);
         setCountryDetail(data[0]);
+        setAnimateId(data[0].alpha3Code);
       });
 
     document.body.style.overflow = "hidden";
@@ -45,34 +48,44 @@ const Countries = ({ countries, setCountries, apiUrl }) => {
   return (
     <StyledContainer>
       {error && <h2>{error}</h2>}
-      {countries && !error
-        ? countries.map((country, id) => (
-            <section key={id} onClick={() => getCountryDetail(country.name)}>
-              <div className="img-container">
-                <img src={country.flag} alt="flag" />
-              </div>
-              <div className="details">
-                <h4>{country.name}</h4>
-                <p>
-                  Population: <span>{country.population.toLocaleString()}</span>
-                </p>
-                <p>
-                  Region: <span>{country.region}</span>
-                </p>
-                <p>
-                  Capital: <span>{country.capital}</span>
-                </p>
-              </div>
-            </section>
-          ))
-        : ""}
+      <AnimateSharedLayout type="crossfade">
+        <AnimatePresence>
+          {countries && !error
+            ? countries.map((country, id) => (
+                <section
+                  key={id}
+                  onClick={() => getCountryDetail(country.name)}
+                >
+                  <div className="img-container">
+                    <img src={country.flag} alt="flag" />
+                  </div>
+                  <div className="details">
+                    <h4>{country.name}</h4>
+                    <p>
+                      Population:{" "}
+                      <span>{country.population.toLocaleString()}</span>
+                    </p>
+                    <p>
+                      Region: <span>{country.region}</span>
+                    </p>
+                    <p>
+                      Capital: <span>{country.capital}</span>
+                    </p>
+                  </div>
+                </section>
+              ))
+            : ""}
 
-      {countryDetail && (
-        <Country
-          countryDetail={countryDetail}
-          setCountryDetail={setCountryDetail}
-        />
-      )}
+          {countryDetail && (
+            <Country
+              countryDetail={countryDetail}
+              setCountryDetail={setCountryDetail}
+              animateId={animateId}
+              setAnimateId={setAnimateId}
+            />
+          )}
+        </AnimatePresence>
+      </AnimateSharedLayout>
     </StyledContainer>
   );
 };
