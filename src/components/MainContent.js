@@ -32,6 +32,18 @@ const MainContent = ({ selected, setSelected, apiUrl, setApiUrl }) => {
     }
   };
 
+  const handleOptionKeyPress = (e) => {
+    const region = e.target.textContent;
+    if (e.key === "Enter") {
+      if (region === "All") {
+        setApiUrl("https://restcountries.eu/rest/v2/all");
+      } else {
+        setSelected(region);
+        setApiUrl(`https://restcountries.eu/rest/v2/region/${region}`);
+      }
+    }
+  };
+
   return (
     <StyledMain
       onClick={(e) => {
@@ -51,7 +63,16 @@ const MainContent = ({ selected, setSelected, apiUrl, setApiUrl }) => {
         </div>
 
         <div className="custom-select-menu">
-          <div className="placeholder" onClick={() => setIsActive(!isActive)}>
+          <div
+            role="button"
+            aria-pressed="false"
+            tabIndex="0"
+            onKeyPress={(e) =>
+              e.key === "Enter" ? setIsActive(!isActive) : ""
+            }
+            className="placeholder"
+            onClick={() => setIsActive(!isActive)}
+          >
             {!selected ? "Filter by Region" : selected}{" "}
             <FontAwesomeIcon
               icon={faChevronDown}
@@ -65,22 +86,64 @@ const MainContent = ({ selected, setSelected, apiUrl, setApiUrl }) => {
 
           {isActive && (
             <div className="options">
-              <div className="option" onClick={selectOption}>
+              <div
+                className="option"
+                onClick={selectOption}
+                role="button"
+                aria-pressed="false"
+                tabIndex="0"
+                onKeyPress={handleOptionKeyPress}
+              >
                 All
               </div>
-              <div className="option" onClick={selectOption}>
+              <div
+                className="option"
+                onClick={selectOption}
+                role="button"
+                aria-pressed="false"
+                tabIndex="0"
+                onKeyPress={handleOptionKeyPress}
+              >
                 Africa
               </div>
-              <div className="option" onClick={selectOption}>
+              <div
+                className="option"
+                onClick={selectOption}
+                role="button"
+                aria-pressed="false"
+                tabIndex="0"
+                onKeyPress={handleOptionKeyPress}
+              >
                 Americas
               </div>
-              <div className="option" onClick={selectOption}>
+              <div
+                className="option"
+                onClick={selectOption}
+                role="button"
+                aria-pressed="false"
+                tabIndex="0"
+                onKeyPress={handleOptionKeyPress}
+              >
                 Asia
               </div>
-              <div className="option" onClick={selectOption}>
+              <div
+                className="option"
+                onClick={selectOption}
+                role="button"
+                aria-pressed="false"
+                tabIndex="0"
+                onKeyPress={handleOptionKeyPress}
+              >
                 Europe
               </div>
-              <div className="option" onClick={selectOption}>
+              <div
+                className="option"
+                onClick={selectOption}
+                role="button"
+                aria-pressed="false"
+                tabIndex="0"
+                onKeyPress={handleOptionKeyPress}
+              >
                 Oceania
               </div>
             </div>
