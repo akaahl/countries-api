@@ -60,7 +60,6 @@ const Country = ({ countryDetail, setCountryDetail, setAnimateId }) => {
       animate="visible"
       exit="out"
     >
-      {/* <AnimatePresence exitBeforeEnter> */}
       <motion.div
         className="content"
         onClick={(e) => e.stopPropagation()}
@@ -69,58 +68,51 @@ const Country = ({ countryDetail, setCountryDetail, setAnimateId }) => {
         animate="visible"
         exit="out"
       >
-        <motion.div className="img-container">
-          <motion.img src={countryDetail.flag} alt="country flag" />
-        </motion.div>
+        <div className="img-container">
+          <img src={countryDetail.flag} alt="country flag" />
+        </div>
 
-        <motion.div className="details">
-          <motion.h3>{countryDetail.name}</motion.h3>
+        <div className="details">
+          <h3>{countryDetail.name}</h3>
 
-          <motion.div className="detail-container">
-            <motion.p>
-              Native Name: <motion.span>{countryDetail.nativeName}</motion.span>
-            </motion.p>
-            <motion.p>
+          <div className="detail-container">
+            <p>
+              Native Name: <span>{countryDetail.nativeName}</span>
+            </p>
+            <p>
               Population:{" "}
-              <motion.span>
-                {countryDetail.population.toLocaleString()}
-              </motion.span>
-            </motion.p>
-            <motion.p>
-              Region: <motion.span>{countryDetail.region}</motion.span>
-            </motion.p>
-            <motion.p>
-              Sub Region: <motion.span>{countryDetail.subregion}</motion.span>
-            </motion.p>
-            <motion.p>
-              Capital: <motion.span>{countryDetail.capital}</motion.span>
-            </motion.p>
-            <motion.p>
-              Top Level Domain:{" "}
-              <motion.span>{countryDetail.topLevelDomain[0]}</motion.span>
-            </motion.p>
-            <motion.p>
-              Currencies:{" "}
-              <motion.span>{formatArray(countryDetail.currencies)}</motion.span>
-            </motion.p>
+              <span>{countryDetail.population.toLocaleString()}</span>
+            </p>
+            <p>
+              Region: <span>{countryDetail.region}</span>
+            </p>
+            <p>
+              Sub Region: <span>{countryDetail.subregion}</span>
+            </p>
+            <p>
+              Capital: <span>{countryDetail.capital}</span>
+            </p>
+            <p>
+              Top Level Domain: <span>{countryDetail.topLevelDomain[0]}</span>
+            </p>
+            <p>
+              Currencies: <span>{formatArray(countryDetail.currencies)}</span>
+            </p>
 
-            <motion.p>
-              Languages:{" "}
-              <motion.span>{formatArray(countryDetail.languages)}</motion.span>
-            </motion.p>
+            <p>
+              Languages: <span>{formatArray(countryDetail.languages)}</span>
+            </p>
 
-            <motion.p className="bordering-countries">
+            <p className="bordering-countries">
               Border Countries:{" "}
               {countryDetail.borders.map((country, index) => (
-                <motion.span key={index}>{country + " "}</motion.span>
+                <span key={index}>{country + " "}</span>
               ))}
-            </motion.p>
-          </motion.div>
-        </motion.div>
+            </p>
+          </div>
+        </div>
       </motion.div>
-      {/* </AnimatePresence> */}
     </StyledArticle>
-    // </AnimatePresence>
   );
 };
 
@@ -147,7 +139,7 @@ const StyledArticle = styled(motion.article)`
     flex-direction: column;
     align-items: center;
     width: 400px;
-    height: 450px;
+    height: 470px;
     border-radius: 10px;
     box-shadow: ${(props) => props.theme.articleContentShadow};
 

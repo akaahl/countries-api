@@ -48,7 +48,6 @@ const Countries = ({ countries, setCountries, apiUrl }) => {
   return (
     <StyledContainer>
       {error && <h2>{error}</h2>}
-
       {countries && !error
         ? countries.map((country, id) => (
             <section key={id} onClick={() => getCountryDetail(country.name)}>
