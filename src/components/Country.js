@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 const articleVariants = {
   initial: {
@@ -11,8 +11,11 @@ const articleVariants = {
       duration: 0.3,
     },
   },
-  exit: {
+  out: {
     opacity: 0,
+    transition: {
+      duration: 0.3,
+    },
   },
 };
 
@@ -29,12 +32,9 @@ const contentVariants = {
       type: "spring",
     },
   },
-  exit: {
+  out: {
     opacity: 0,
     scale: 0,
-    transition: {
-      duration: 0.7,
-    },
   },
 };
 
@@ -48,6 +48,7 @@ const Country = ({ countryDetail, setCountryDetail, setAnimateId }) => {
   };
 
   return (
+    // <AnimatePresence>
     <StyledArticle
       onClick={() => {
         setCountryDetail(null);
@@ -57,63 +58,69 @@ const Country = ({ countryDetail, setCountryDetail, setAnimateId }) => {
       variants={articleVariants}
       initial="initial"
       animate="visible"
-      exit="exit"
+      exit="out"
     >
-      <AnimatePresence>
-        <motion.div
-          className="content"
-          onClick={(e) => e.stopPropagation()}
-          variants={contentVariants}
-          initial="initial"
-          animate="visible"
-          exit="exit"
-        >
-          <div className="img-container">
-            <img src={countryDetail.flag} alt="country flag" />
-          </div>
-
-          <div className="details">
-            <h3>{countryDetail.name}</h3>
-
-            <div className="detail-container">
-              <p>
-                Native Name: <span>{countryDetail.nativeName}</span>
-              </p>
-              <p>
-                Population:{" "}
-                <span>{countryDetail.population.toLocaleString()}</span>
-              </p>
-              <p>
-                Region: <span>{countryDetail.region}</span>
-              </p>
-              <p>
-                Sub Region: <span>{countryDetail.subregion}</span>
-              </p>
-              <p>
-                Capital: <span>{countryDetail.capital}</span>
-              </p>
-              <p>
-                Top Level Domain: <span>{countryDetail.topLevelDomain[0]}</span>
-              </p>
-              <p>
-                Currencies: <span>{formatArray(countryDetail.currencies)}</span>
-              </p>
-
-              <p>
-                Languages: <span>{formatArray(countryDetail.languages)}</span>
-              </p>
-
-              <p className="bordering-countries">
-                Border Countries:{" "}
-                {countryDetail.borders.map((country, index) => (
-                  <span key={index}>{country + " "}</span>
-                ))}
-              </p>
-            </div>
-          </div>
+      {/* <AnimatePresence exitBeforeEnter> */}
+      <motion.div
+        className="content"
+        onClick={(e) => e.stopPropagation()}
+        variants={contentVariants}
+        initial="initial"
+        animate="visible"
+        exit="out"
+      >
+        <motion.div className="img-container">
+          <motion.img src={countryDetail.flag} alt="country flag" />
         </motion.div>
-      </AnimatePresence>
+
+        <motion.div className="details">
+          <motion.h3>{countryDetail.name}</motion.h3>
+
+          <motion.div className="detail-container">
+            <motion.p>
+              Native Name: <motion.span>{countryDetail.nativeName}</motion.span>
+            </motion.p>
+            <motion.p>
+              Population:{" "}
+              <motion.span>
+                {countryDetail.population.toLocaleString()}
+              </motion.span>
+            </motion.p>
+            <motion.p>
+              Region: <motion.span>{countryDetail.region}</motion.span>
+            </motion.p>
+            <motion.p>
+              Sub Region: <motion.span>{countryDetail.subregion}</motion.span>
+            </motion.p>
+            <motion.p>
+              Capital: <motion.span>{countryDetail.capital}</motion.span>
+            </motion.p>
+            <motion.p>
+              Top Level Domain:{" "}
+              <motion.span>{countryDetail.topLevelDomain[0]}</motion.span>
+            </motion.p>
+            <motion.p>
+              Currencies:{" "}
+              <motion.span>{formatArray(countryDetail.currencies)}</motion.span>
+            </motion.p>
+
+            <motion.p>
+              Languages:{" "}
+              <motion.span>{formatArray(countryDetail.languages)}</motion.span>
+            </motion.p>
+
+            <motion.p className="bordering-countries">
+              Border Countries:{" "}
+              {countryDetail.borders.map((country, index) => (
+                <motion.span key={index}>{country + " "}</motion.span>
+              ))}
+            </motion.p>
+          </motion.div>
+        </motion.div>
+      </motion.div>
+      {/* </AnimatePresence> */}
     </StyledArticle>
+    // </AnimatePresence>
   );
 };
 
@@ -131,7 +138,7 @@ const StyledArticle = styled(motion.article)`
   align-items: center;
   justify-content: center;
   /* padding: 2rem 0; */
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
 
   .content {
     background: ${(props) => props.theme.articleContentBg};

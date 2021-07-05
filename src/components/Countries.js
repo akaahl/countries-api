@@ -70,14 +70,16 @@ const Countries = ({ countries, setCountries, apiUrl }) => {
             </section>
           ))
         : ""}
-      {countryDetail && (
-        <Country
-          countryDetail={countryDetail}
-          setCountryDetail={setCountryDetail}
-          animateId={animateId}
-          setAnimateId={setAnimateId}
-        />
-      )}
+      <AnimatePresence>
+        {countryDetail && (
+          <Country
+            countryDetail={countryDetail}
+            setCountryDetail={setCountryDetail}
+            animateId={animateId}
+            setAnimateId={setAnimateId}
+          />
+        )}
+      </AnimatePresence>
     </StyledContainer>
   );
 };
