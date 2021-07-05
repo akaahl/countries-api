@@ -142,6 +142,8 @@ const StyledMain = styled.main`
       border-radius: 5px;
       position: relative;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      background: ${(props) => props.theme.selectMenu};
+      transition: background 0.3s ease-in;
 
       .placeholder {
         display: flex;
@@ -151,6 +153,7 @@ const StyledMain = styled.main`
         font-weight: 600;
         cursor: pointer;
         padding: 1rem 1rem 1rem 1.6rem;
+        color: ${(props) => props.theme.selectPlaceholder};
       }
 
       .options {
@@ -161,7 +164,8 @@ const StyledMain = styled.main`
         box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
         border-radius: 5px;
         z-index: 10;
-        background: white;
+        background: ${(props) => props.theme.optionsBg};
+        transition: background 0.3s ease-in;
 
         .option {
           padding: 0.6rem 1.5rem;
@@ -169,6 +173,7 @@ const StyledMain = styled.main`
           font-size: 14px;
           font-weight: 600;
           z-index: 10;
+          color: ${(props) => props.theme.optionText};
 
           &:first-child {
             border-top-left-radius: 5px;
@@ -180,8 +185,8 @@ const StyledMain = styled.main`
             border-bottom-right-radius: 5px;
           }
           &:hover {
-            background: hsl(0, 0%, 52%);
-            color: white;
+            background: ${(props) => props.theme.optionsHoverBg};
+            color: ${(props) => props.theme.optionsHoverText};
           }
         }
       }

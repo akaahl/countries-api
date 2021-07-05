@@ -9,14 +9,17 @@ export const lightTheme = {
   inputBg: "white",
   inputPlaceholder: "hsl(200, 15%, 8%)",
   inputOutline: "2px dashed darkblue",
+  selectMenu: "white",
+  selectPlaceholder: "hsl(200, 15%, 8%)",
   optionsBg: "white",
-  optionHoverBg: "hsl(0, 0%, 52%)",
+  optionText: "hsl(200, 15%, 8%)",
+  optionHoverBg: "hsl(209, 23%, 22%)",
   optionHoverText: "white",
 };
 
 export const darkTheme = {
   background: "hsl(209, 23%, 22%)",
-  headerBoxShadow: " 0 2px 15px rgba(0, 0, 0, 1)",
+  headerBoxShadow: " 0 5px 25px rgba(0, 0, 0, 1)",
   headerH1: "hsl(0, 0%, 85%)",
   headerButton: "hsl(0, 0%, 85%)",
   mainContentBg: "hsl(207, 26%, 17%)",
@@ -25,4 +28,10 @@ export const darkTheme = {
   inputBg: "hsl(209, 23%, 22%)",
   inputPlaceholder: "hsl(0, 0%, 85%)",
   inputOutline: "2px dashed white",
+  selectMenu: "hsl(209, 23%, 22%)",
+  selectPlaceholder: "hsl(0, 0%, 85%)",
+  optionsBg: "hsl(209, 23%, 22%)",
+  optionText: "hsl(0, 0%, 85%)",
+  optionsHoverBg: "white",
+  optionsHoverText: "hsl(200, 15%, 8%)",
 };
