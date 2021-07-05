@@ -3,10 +3,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon } from "@fortawesome/free-regular-svg-icons";
 import { faMoon as faMoonSolid } from "@fortawesome/free-solid-svg-icons";
 
-const Header = ({ themeColor, setThemeColor }) => {
+const Header = ({
+  themeColor,
+  setThemeColor,
+  setApiUrl,
+  setSelected,
+}) => {
   return (
     <StyledHeader>
-      <h1>Where in the world?</h1>
+      <h1
+        onClick={() => {
+          setApiUrl("https://restcountries.eu/rest/v2/all");
+          setSelected("All");
+        }}
+      >
+        Where in the world?
+      </h1>
 
       <div className="theme-switcher">
         {!themeColor && <FontAwesomeIcon icon={faMoon} />}
@@ -41,6 +53,7 @@ const StyledHeader = styled.header`
     font-weight: 700;
     color: ${(props) => props.theme.headerH1};
     transition: color 0.3s ease-in;
+    cursor: pointer;
   }
 
   .theme-switcher {

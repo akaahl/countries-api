@@ -4,10 +4,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import Countries from "./Countries";
 
-const MainContent = ({ selected, setSelected }) => {
+const MainContent = ({ selected, setSelected, apiUrl, setApiUrl }) => {
   const [isActive, setIsActive] = useState(false);
   const [countries, setCountries] = useState(null);
-  const [apiUrl, setApiUrl] = useState("https://restcountries.eu/rest/v2/all");
   const [search, setSearch] = useState("");
 
   const selectOption = (e) => {
@@ -133,7 +132,7 @@ const StyledMain = styled.main`
         background: ${(props) => props.theme.inputBg};
         color: ${(props) => props.theme.inputText};
         transition: background 0.3s ease-in;
-        caret-color: transparent;
+        /* caret-color: transparent; */
 
         &::placeholder {
           color: ${(props) => props.theme.inputPlaceholder};
