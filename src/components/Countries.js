@@ -48,44 +48,36 @@ const Countries = ({ countries, setCountries, apiUrl }) => {
   return (
     <StyledContainer>
       {error && <h2>{error}</h2>}
-      <AnimateSharedLayout type="crossfade">
-        <AnimatePresence>
-          {countries && !error
-            ? countries.map((country, id) => (
-                <section
-                  key={id}
-                  onClick={() => getCountryDetail(country.name)}
-                >
-                  <div className="img-container">
-                    <img src={country.flag} alt="flag" />
-                  </div>
-                  <div className="details">
-                    <h4>{country.name}</h4>
-                    <p>
-                      Population:{" "}
-                      <span>{country.population.toLocaleString()}</span>
-                    </p>
-                    <p>
-                      Region: <span>{country.region}</span>
-                    </p>
-                    <p>
-                      Capital: <span>{country.capital}</span>
-                    </p>
-                  </div>
-                </section>
-              ))
-            : ""}
 
-          {countryDetail && (
-            <Country
-              countryDetail={countryDetail}
-              setCountryDetail={setCountryDetail}
-              animateId={animateId}
-              setAnimateId={setAnimateId}
-            />
-          )}
-        </AnimatePresence>
-      </AnimateSharedLayout>
+      {countries && !error
+        ? countries.map((country, id) => (
+            <section key={id} onClick={() => getCountryDetail(country.name)}>
+              <div className="img-container">
+                <img src={country.flag} alt="flag" />
+              </div>
+              <div className="details">
+                <h4>{country.name}</h4>
+                <p>
+                  Population: <span>{country.population.toLocaleString()}</span>
+                </p>
+                <p>
+                  Region: <span>{country.region}</span>
+                </p>
+                <p>
+                  Capital: <span>{country.capital}</span>
+                </p>
+              </div>
+            </section>
+          ))
+        : ""}
+      {countryDetail && (
+        <Country
+          countryDetail={countryDetail}
+          setCountryDetail={setCountryDetail}
+          animateId={animateId}
+          setAnimateId={setAnimateId}
+        />
+      )}
     </StyledContainer>
   );
 };

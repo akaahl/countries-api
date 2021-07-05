@@ -1,12 +1,44 @@
 import styled from "styled-components";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
-const Country = ({
-  countryDetail,
-  setCountryDetail,
-  animateId,
-  setAnimateId,
-}) => {
+const articleVariants = {
+  initial: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 0.3,
+    },
+  },
+  exit: {
+    opacity: 0,
+  },
+};
+
+const contentVariants = {
+  initial: {
+    opacity: 0,
+    scale: 0,
+  },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.7,
+      type: "spring",
+    },
+  },
+  exit: {
+    opacity: 0,
+    scale: 0,
+    transition: {
+      duration: 0.7,
+    },
+  },
+};
+
+const Country = ({ countryDetail, setCountryDetail, setAnimateId }) => {
   const formatArray = (arr) => {
     if (arr.length > 1) {
       return arr.map((item) => item.name).join(", ");
@@ -22,57 +54,70 @@ const Country = ({
         setAnimateId("");
         document.body.style.overflow = "auto";
       }}
+      variants={articleVariants}
+      initial="initial"
+      animate="visible"
+      exit="exit"
     >
-      <div className="content" onClick={(e) => e.stopPropagation()}>
-        <div className="img-container">
-          <img src={countryDetail.flag} alt="country flag" />
-        </div>
-
-        <div className="details">
-          <h3>{countryDetail.name}</h3>
-
-          <div className="detail-container">
-            <p>
-              Native Name: <span>{countryDetail.nativeName}</span>
-            </p>
-            <p>
-              Population:{" "}
-              <span>{countryDetail.population.toLocaleString()}</span>
-            </p>
-            <p>
-              Region: <span>{countryDetail.region}</span>
-            </p>
-            <p>
-              Sub Region: <span>{countryDetail.subregion}</span>
-            </p>
-            <p>
-              Capital: <span>{countryDetail.capital}</span>
-            </p>
-            <p>
-              Top Level Domain: <span>{countryDetail.topLevelDomain[0]}</span>
-            </p>
-            <p>
-              Currencies: <span>{formatArray(countryDetail.currencies)}</span>
-            </p>
-
-            <p>
-              Languages: <span>{formatArray(countryDetail.languages)}</span>
-            </p>
-
-            <p className="bordering-countries">
-              Border Countries:{" "}
-              {countryDetail.borders.map((country, index) => (
-                <span key={index}>{country + " "}</span>
-              ))}
-            </p>
+      <AnimatePresence>
+        <motion.div
+          className="content"
+          onClick={(e) => e.stopPropagation()}
+          variants={contentVariants}
+          initial="initial"
+          animate="visible"
+          exit="exit"
+        >
+          <div className="img-container">
+            <img src={countryDetail.flag} alt="country flag" />
           </div>
-        </div>
-      </div>
+
+          <div className="details">
+            <h3>{countryDetail.name}</h3>
+
+            <div className="detail-container">
+              <p>
+                Native Name: <span>{countryDetail.nativeName}</span>
+              </p>
+              <p>
+                Population:{" "}
+                <span>{countryDetail.population.toLocaleString()}</span>
+              </p>
+              <p>
+                Region: <span>{countryDetail.region}</span>
+              </p>
+              <p>
+                Sub Region: <span>{countryDetail.subregion}</span>
+              </p>
+              <p>
+                Capital: <span>{countryDetail.capital}</span>
+              </p>
+              <p>
+                Top Level Domain: <span>{countryDetail.topLevelDomain[0]}</span>
+              </p>
+              <p>
+                Currencies: <span>{formatArray(countryDetail.currencies)}</span>
+              </p>
+
+              <p>
+                Languages: <span>{formatArray(countryDetail.languages)}</span>
+              </p>
+
+              <p className="bordering-countries">
+                Border Countries:{" "}
+                {countryDetail.borders.map((country, index) => (
+                  <span key={index}>{country + " "}</span>
+                ))}
+              </p>
+            </div>
+          </div>
+        </motion.div>
+      </AnimatePresence>
     </StyledArticle>
   );
 };
 
-const StyledArticle = styled.article`
+const StyledArticle = styled(motion.article)`
   position: fixed;
   top: 0;
   left: 0;
