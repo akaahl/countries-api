@@ -46,7 +46,15 @@ const Countries = ({ countries, setCountries, apiUrl }) => {
   };
 
   return (
-    <StyledContainer>
+    <StyledContainer
+    // sytle={{
+    //   display: "grid",
+    //   gridTemplateColumns:
+    //     countries && countries.length > 4
+    //       ? "repeat(auto-fit, minmax(200px, 1fr))"
+    //       : "200px 200px 200px 200px",
+    // }}
+    >
       {error && <h2>{error}</h2>}
       {countries && !error
         ? countries.map((country, id) => (
@@ -87,7 +95,7 @@ const StyledContainer = styled.div`
   width: 100%;
   margin-top: 4rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(4, minmax(250px, 1fr));
   grid-gap: 4rem 4rem;
 
   section {
