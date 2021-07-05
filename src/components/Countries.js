@@ -98,9 +98,11 @@ const StyledContainer = styled.div`
   grid-gap: 4rem 4rem;
 
   section {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    box-shadow: ${(props) => props.theme.countriesShadow};
     border-radius: 7px;
     cursor: pointer;
+    background: ${(props) => props.theme.countriesBackground};
+    transition: background 0.3s ease-in;
 
     .img-container {
       border-top-left-radius: 7px;
@@ -123,10 +125,12 @@ const StyledContainer = styled.div`
       h4 {
         font-weight: 700;
         margin-bottom: 1rem;
+        color: ${(props) => props.theme.countriesText};
       }
 
       p {
         font-weight: 700;
+        color: ${(props) => props.theme.countriesText};
 
         span {
           font-weight: 500;

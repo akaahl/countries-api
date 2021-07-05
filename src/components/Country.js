@@ -80,7 +80,7 @@ const StyledArticle = styled.article`
   bottom: 0;
   width: 100%;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.3);
+  background: ${(props) => props.theme.articleBg};
   z-index: 15;
   display: flex;
   align-items: center;
@@ -89,7 +89,7 @@ const StyledArticle = styled.article`
   overflow-y: scroll;
 
   .content {
-    background: white;
+    background: ${(props) => props.theme.articleContentBg};
     padding: 1rem;
     display: flex;
     flex-direction: column;
@@ -97,6 +97,7 @@ const StyledArticle = styled.article`
     width: 400px;
     height: 450px;
     border-radius: 10px;
+    box-shadow: ${(props) => props.theme.articleContentShadow};
 
     .img-container {
       height: 35%;
@@ -117,11 +118,12 @@ const StyledArticle = styled.article`
 
       h3 {
         margin: 1rem auto 0 auto;
-
+        color: ${(props) => props.theme.articleContentText};
         font-weight: 800;
       }
 
       p {
+        color: ${(props) => props.theme.articleContentText};
         font-size: 14px;
         font-weight: 700;
 
