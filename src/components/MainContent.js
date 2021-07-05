@@ -26,6 +26,13 @@ const MainContent = ({ selected, setSelected }) => {
     setApiUrl(`https://restcountries.eu/rest/v2/name/${search}`);
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      setSearch(e.target.value);
+      console.log(search);
+    }
+  };
+
   return (
     <StyledMain
       onClick={(e) => {
@@ -40,7 +47,7 @@ const MainContent = ({ selected, setSelected }) => {
           <input
             type="search"
             placeholder="Search for a country"
-            onChange={(e) => setSearch(e.target.value)}
+            onKeyPress={handleKeyPress}
           />
         </div>
 
@@ -124,7 +131,9 @@ const StyledMain = styled.main`
         margin-left: 1rem;
         border: none;
         background: ${(props) => props.theme.inputBg};
+        color: ${(props) => props.theme.inputText};
         transition: background 0.3s ease-in;
+        caret-color: transparent;
 
         &::placeholder {
           color: ${(props) => props.theme.inputPlaceholder};
