@@ -3,12 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon } from "@fortawesome/free-regular-svg-icons";
 import { faMoon as faMoonSolid } from "@fortawesome/free-solid-svg-icons";
 
-const Header = ({
-  themeColor,
-  setThemeColor,
-  setApiUrl,
-  setSelected,
-}) => {
+const Header = ({ themeColor, setThemeColor, setApiUrl, setSelected }) => {
   return (
     <StyledHeader>
       <h1
@@ -73,6 +68,24 @@ const StyledHeader = styled.header`
       font-weight: 700;
       cursor: pointer;
       color: ${(props) => props.theme.headerButton};
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+
+    h1 {
+      font-size: 1.2rem;
+    }
+  }
+
+  @media (max-width: 280px) {
+    h1 {
+      font-size: 1rem;
+    }
+
+    button {
+      font-size: 1rem;
     }
   }
 `;

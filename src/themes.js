@@ -48,6 +48,6 @@ export const darkTheme = {
   countriesText: "hsl(0, 0%, 85%)",
   articleBg: "rgba(0, 0, 0, 0.6)",
   articleContentBg: "hsl(209, 23%, 22%)",
-  articleContentShadow: "0 0 50px rgba(155, 155, 155, 0.3)",
+  articleContentShadow: "0 0 10px rgba(155, 155, 155, 0.3)",
   articleContentText: "hsl(0, 0%, 85%)",
 };

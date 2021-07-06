@@ -266,6 +266,28 @@ const StyledMain = styled.main`
       }
     }
   }
+
+  @media (max-width: 768px) {
+    padding: 3rem 4rem;
+
+    form {
+      flex-direction: column;
+      align-items: flex-start;
+
+      .search-container {
+        width: 100%;
+      }
+
+      .custom-select-menu {
+        width: 40%;
+        margin-top: 2rem;
+      }
+    }
+  }
+
+  @media (max-width: 375px) {
+    padding: 3rem 1rem 1rem;
+  }
 `;
 
 export default MainContent;

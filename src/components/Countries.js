@@ -94,10 +94,6 @@ const StyledContainer = styled.div`
   width: 100%;
   margin-top: 4rem;
   display: grid;
-  /* grid-template-columns: ${(props) =>
-    props.check
-      ? "repeat(auto-fit, minmax(250px, 1fr))"
-      : "repeat(4, minmax(250px, 1fr))"}; */
   grid-gap: 4rem 4rem;
 
   section {
@@ -141,6 +137,10 @@ const StyledContainer = styled.div`
         }
       }
     }
+  }
+
+  @media (max-width: 375px) {
+    grid-template-columns: 150px;
   }
 `;
 
