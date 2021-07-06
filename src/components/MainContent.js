@@ -30,7 +30,7 @@ const MainContent = ({ selected, setSelected, apiUrl, setApiUrl }) => {
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       setSearch(e.target.value);
-      console.log(search);
+      e.target.value = "";
     }
   };
 
