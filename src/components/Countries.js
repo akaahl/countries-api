@@ -3,10 +3,11 @@ import { useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 import Country from "./Country";
 
-const Countries = ({ countries, setCountries, apiUrl, check }) => {
+const Countries = ({ countries, setCountries, apiUrl }) => {
   const [error, setError] = useState(null);
   const [countryDetail, setCountryDetail] = useState(null);
   const [animateId, setAnimateId] = useState("");
+  const [loader, setLoader] = useState(true);
 
   useEffect(() => {
     const abortCont = new AbortController();
@@ -16,6 +17,7 @@ const Countries = ({ countries, setCountries, apiUrl, check }) => {
         if (!res.ok) {
           throw Error("The country that your for searched for does not exist");
         }
+
         return res.json();
       })
       .then((data) => {
@@ -49,7 +51,7 @@ const Countries = ({ countries, setCountries, apiUrl, check }) => {
     <StyledContainer
       style={{
         gridTemplateColumns:
-          countries.length > 4
+          countries && countries.length > 4
             ? "repeat(auto-fit, minmax(250px, 1fr))"
             : "repeat(4, minmax(300px, 1fr))",
       }}
@@ -59,7 +61,18 @@ const Countries = ({ countries, setCountries, apiUrl, check }) => {
         ? countries.map((country, id) => (
             <section key={id} onClick={() => getCountryDetail(country.name)}>
               <div className="img-container">
-                <img src={country.flag} alt="flag" />
+                <div
+                  style={{ display: loader ? "flex" : "none" }}
+                  className="loader"
+                >
+                  <div className="spinner"></div>
+                </div>
+                <img
+                  src={country.flag}
+                  alt="flag"
+                  onLoad={() => setLoader(false)}
+                  style={{ display: loader ? "none" : "block" }}
+                />
               </div>
               <div className="details">
                 <h4>{country.name}</h4>
@@ -109,6 +122,38 @@ const StyledContainer = styled.div`
       overflow: hidden;
       width: 100%;
       height: 50%;
+
+      .loader {
+        height: 170px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: ${(props) => props.theme.loaderBg};
+        transition: background 0.3s ease-in-out;
+
+        .spinner {
+          display: inline-block;
+          width: 50px;
+          height: 50px;
+          border: 3px solid rgba(255, 255, 255, 0.3);
+          border-radius: 50%;
+          border-top-color: white;
+          animation: spin 1s ease-in-out infinite;
+          -webkit-animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+          to {
+            -webkit-transform: rotate(360deg);
+          }
+        }
+        @-webkit-keyframes spin {
+          to {
+            -webkit-transform: rotate(360deg);
+          }
+        }
+      }
 
       img {
         width: 100%;

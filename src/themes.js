@@ -23,6 +23,7 @@ export const lightTheme = {
   articleContentBg: "white",
   articleContentShadow: "0 0 50px rgba(0,0,0,0.7)",
   articleContentText: "hsl(200, 15%, 8%)",
+  loaderBg: "rgba(0, 0, 0, 0.2)",
 };
 
 export const darkTheme = {
@@ -50,4 +51,5 @@ export const darkTheme = {
   articleContentBg: "hsl(209, 23%, 22%)",
   articleContentShadow: "0 0 10px rgba(155, 155, 155, 0.3)",
   articleContentText: "hsl(0, 0%, 85%)",
+  loaderBg: "rgba(0, 0, 0, 0.1)",
 };
