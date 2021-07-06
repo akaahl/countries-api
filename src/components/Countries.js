@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence, AnimateSharedLayout } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import Country from "./Country";
 
-const Countries = ({ countries, setCountries, apiUrl }) => {
+const Countries = ({ countries, setCountries, apiUrl, check }) => {
   const [error, setError] = useState(null);
   const [countryDetail, setCountryDetail] = useState(null);
   const [animateId, setAnimateId] = useState("");
@@ -46,7 +46,14 @@ const Countries = ({ countries, setCountries, apiUrl }) => {
   };
 
   return (
-    <StyledContainer>
+    <StyledContainer
+      style={{
+        gridTemplateColumns:
+          countries.length > 4
+            ? "repeat(auto-fit, minmax(250px, 1fr))"
+            : "repeat(4, minmax(300px, 1fr))",
+      }}
+    >
       {error && <h2>{error}</h2>}
       {countries && !error
         ? countries.map((country, id) => (
@@ -87,7 +94,10 @@ const StyledContainer = styled.div`
   width: 100%;
   margin-top: 4rem;
   display: grid;
-  grid-template-columns: repeat(4, minmax(250px, 1fr));
+  /* grid-template-columns: ${(props) =>
+    props.check
+      ? "repeat(auto-fit, minmax(250px, 1fr))"
+      : "repeat(4, minmax(250px, 1fr))"}; */
   grid-gap: 4rem 4rem;
 
   section {

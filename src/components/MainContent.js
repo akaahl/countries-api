@@ -8,6 +8,7 @@ const MainContent = ({ selected, setSelected, apiUrl, setApiUrl }) => {
   const [isActive, setIsActive] = useState(false);
   const [countries, setCountries] = useState(null);
   const [search, setSearch] = useState("");
+  const [check, setCheck] = useState(true);
 
   const selectOption = (e) => {
     const region = e.target.textContent;
@@ -23,6 +24,7 @@ const MainContent = ({ selected, setSelected, apiUrl, setApiUrl }) => {
   const handleForm = (e) => {
     e.preventDefault();
     setApiUrl(`https://restcountries.eu/rest/v2/name/${search}`);
+    setCheck(false);
   };
 
   const handleKeyPress = (e) => {
@@ -155,6 +157,7 @@ const MainContent = ({ selected, setSelected, apiUrl, setApiUrl }) => {
         countries={countries}
         setCountries={setCountries}
         apiUrl={apiUrl}
+        check={check}
       />
     </StyledMain>
   );
