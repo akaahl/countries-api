@@ -13,6 +13,7 @@ const MainContent = ({ selected, setSelected, apiUrl, setApiUrl }) => {
     const region = e.target.textContent;
 
     if (region === "All") {
+      // setSelected(region);
       setApiUrl("https://restcountries.eu/rest/v2/all");
     } else {
       setSelected(region);

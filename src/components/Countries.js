@@ -21,6 +21,7 @@ const Countries = ({ countries, setCountries, apiUrl }) => {
         return res.json();
       })
       .then((data) => {
+        // setLoader(true);
         setCountries(data);
         setError(null);
       })
