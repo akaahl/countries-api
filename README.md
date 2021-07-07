@@ -16,8 +16,6 @@ This is a solution to the [REST Countries API with color theme switcher challeng
 - [Author](#author)
 - [Acknowledgments](#acknowledgments)
 
-**Note: Delete this note and update the table of contents based on what sections you keep.**
-
 ## Overview
 
 ### The challenge
@@ -37,8 +35,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [FrontEndMentor Solution](https://www.frontendmentor.io/solutions/react-js-with-styled-components-and-framer-motion-NivKObvn6)
+- Live Site URL: [Vercel Live Site](https://countries-api-lac.vercel.app/)
 
 ## My process
 
