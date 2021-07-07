@@ -38,7 +38,7 @@ const contentVariants = {
   },
 };
 
-const Country = ({ countryDetail, setCountryDetail, setAnimateId }) => {
+const Country = ({ countryDetail, setCountryDetail }) => {
   const formatArray = (arr) => {
     if (arr.length > 1) {
       return arr.map((item) => item.name).join(", ");
@@ -48,11 +48,9 @@ const Country = ({ countryDetail, setCountryDetail, setAnimateId }) => {
   };
 
   return (
-    // <AnimatePresence>
     <StyledArticle
       onClick={() => {
         setCountryDetail(null);
-        setAnimateId("");
         document.body.style.overflow = "auto";
       }}
       variants={articleVariants}
@@ -129,8 +127,6 @@ const StyledArticle = styled(motion.article)`
   display: flex;
   align-items: center;
   justify-content: center;
-  /* padding: 2rem 0; */
-  /* overflow-y: scroll; */
 
   .content {
     background: ${(props) => props.theme.articleContentBg};
@@ -157,7 +153,6 @@ const StyledArticle = styled(motion.article)`
       width: 100%;
       display: flex;
       flex-direction: column;
-      /* align-items: center; */
       justify-content: center;
 
       h3 {

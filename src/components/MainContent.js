@@ -13,7 +13,7 @@ const MainContent = ({ selected, setSelected, apiUrl, setApiUrl }) => {
     const region = e.target.textContent;
 
     if (region === "All") {
-      // setSelected(region);
+      setSelected(region);
       setApiUrl("https://restcountries.eu/rest/v2/all");
     } else {
       setSelected(region);
@@ -196,7 +196,6 @@ const StyledMain = styled.main`
         background: ${(props) => props.theme.inputBg};
         color: ${(props) => props.theme.inputText};
         transition: background 0.3s ease-in;
-        /* caret-color: transparent; */
 
         &::placeholder {
           color: ${(props) => props.theme.inputPlaceholder};
@@ -257,8 +256,8 @@ const StyledMain = styled.main`
             border-bottom-right-radius: 5px;
           }
           &:hover {
-            background: ${(props) => props.theme.optionsHoverBg};
-            color: ${(props) => props.theme.optionsHoverText};
+            background: ${(props) => props.theme.optionHoverBg};
+            color: ${(props) => props.theme.optionHoverText};
           }
         }
       }

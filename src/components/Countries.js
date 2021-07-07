@@ -6,7 +6,6 @@ import Country from "./Country";
 const Countries = ({ countries, setCountries, apiUrl }) => {
   const [error, setError] = useState(null);
   const [countryDetail, setCountryDetail] = useState(null);
-  const [animateId, setAnimateId] = useState("");
   const [loader, setLoader] = useState(true);
 
   useEffect(() => {
@@ -21,15 +20,10 @@ const Countries = ({ countries, setCountries, apiUrl }) => {
         return res.json();
       })
       .then((data) => {
-        // setLoader(true);
         setCountries(data);
         setError(null);
       })
       .catch((err) => {
-        if (err.name === "AbortError") {
-          console.log("fetch aborted");
-        }
-
         setError("The country that you searched for does not exist");
       });
 
@@ -40,9 +34,7 @@ const Countries = ({ countries, setCountries, apiUrl }) => {
     fetch(`https://restcountries.eu/rest/v2/name/${name}?fullText=true`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data[0]);
         setCountryDetail(data[0]);
-        setAnimateId(data[0].alpha3Code);
       });
 
     document.body.style.overflow = "hidden";
@@ -95,8 +87,6 @@ const Countries = ({ countries, setCountries, apiUrl }) => {
           <Country
             countryDetail={countryDetail}
             setCountryDetail={setCountryDetail}
-            animateId={animateId}
-            setAnimateId={setAnimateId}
           />
         )}
       </AnimatePresence>
